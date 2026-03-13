@@ -1,13 +1,14 @@
 # Moon Aura
 
-Rozdelena staticka verze prezentacniho webu Moon River pripravena pro dalsi upravy a publikaci.
+Moon River prevedeny do Next.js App Routeru se statickym exportem pro GitHub Pages.
 
-## Struktura
+## Lokalni vyvoj
 
-- `index.html` hlavni stranka
-- `assets/css/style.css` styly
-- `assets/js/main.js` interakce
+- `npm install`
+- `npm run dev`
 
-## Publikace
+## Build
 
-Projekt je navrzeny jako cisty staticky web bez build kroku, vhodny pro GitHub Pages.
+- `npm run build`
+
+Produkce se exportuje do slozky `out/` a workflow ji publikuje na GitHub Pages.
