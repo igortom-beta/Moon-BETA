@@ -1,4 +1,4 @@
-export function ChatWidget({ chatOpen, onToggle, onClose }) {
+export function ChatWidget({ chatOpen, onToggle, onClose, t }) {
   return (
     <>
       <button
@@ -15,18 +15,15 @@ export function ChatWidget({ chatOpen, onToggle, onClose }) {
         <div className="chat-header">
           <div>
             <strong>EMA AI 4.0</strong>
-            <span>Inteligentni pruvodce</span>
+            <span>{t.chatSubtitle}</span>
           </div>
-          <button type="button" onClick={onClose} aria-label="Zavrit chat">
+          <button type="button" onClick={onClose} aria-label={t.chatClose}>
             x
           </button>
         </div>
 
         <div className="chat-body">
-          <div className="chat-bubble">
-            Vitejte v Moon River. Jsem EMA, vase spojeni s historii i komfortem tohoto
-            mista. Cim mohu poslouzit?
-          </div>
+          <div className="chat-bubble">{t.chatWelcome}</div>
         </div>
 
         <form
@@ -35,8 +32,8 @@ export function ChatWidget({ chatOpen, onToggle, onClose }) {
             event.preventDefault();
           }}
         >
-          <input type="text" placeholder="Zeptejte se Emy..." />
-          <button type="submit">Odeslat</button>
+          <input type="text" placeholder={t.chatPlaceholder} />
+          <button type="submit">{t.chatSend}</button>
         </form>
       </aside>
     </>

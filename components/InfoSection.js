@@ -1,43 +1,30 @@
-export function InfoSection() {
+export function InfoSection({ t }) {
   return (
     <section id="informace" className="section">
       <div className="shell">
         <div className="section-intro reveal-block" data-reveal>
-          <h2>Investice do klidu</h2>
+          <h2>{t.infoTitle}</h2>
           <div className="divider" />
-          <p>
-            Investice do Moon River predstavuje spojeni osobniho pozitku a financni
-            jistoty. Model pronajmu je navrzen tak, aby poskytl absolutni klid a
-            stabilni zhodnoceni.
-          </p>
+          <p>{t.infoDescription}</p>
         </div>
 
         <div className="cards">
           <article className="card reveal-block" data-reveal>
             <div className="card-icon">01</div>
-            <h3>Garantovany pronajem</h3>
-            <p>
-              Dlouhodoba jistota vynosu bez nutnosti aktivniho reseni obsazenosti.
-              Garantovana opce na 5+5 let.
-            </p>
+            <h3>{t.infoCard1Title}</h3>
+            <p>{t.infoCard1Description}</p>
           </article>
 
           <article className="card card-shift reveal-block" data-reveal>
             <div className="card-icon">02</div>
-            <h3>Unikatni lokalita</h3>
-            <p>
-              Lojzova Paseka, Frymburk. Ostrov v prirode obklopeny sumavskymi lesy
-              s primym pristupem k vode.
-            </p>
+            <h3>{t.infoCard2Title}</h3>
+            <p>{t.infoCard2Description}</p>
           </article>
 
           <article className="card reveal-block" data-reveal>
             <div className="card-icon">03</div>
-            <h3>Kompletni servis</h3>
-            <p>
-              Bezstarostna udrzba, uklid a pece o pozemek v rezii profesionalniho
-              tymu resortu.
-            </p>
+            <h3>{t.infoCard3Title}</h3>
+            <p>{t.infoCard3Description}</p>
           </article>
         </div>
       </div>

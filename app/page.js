@@ -7,13 +7,18 @@ import { ContactSection } from "../components/ContactSection";
 import { GallerySection } from "../components/GallerySection";
 import { HeroSection } from "../components/HeroSection";
 import { InfoSection } from "../components/InfoSection";
+import { PricingSection } from "../components/PricingSection";
 import { SiteFooter } from "../components/SiteFooter";
 import { SiteHeader } from "../components/SiteHeader";
+import { translations } from "../components/translations";
 
 export default function HomePage() {
   const [navOpen, setNavOpen] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [submitState, setSubmitState] = useState("idle");
+  const [language, setLanguage] = useState("cs");
+
+  const t = translations[language] ?? translations.cs;
 
   useEffect(() => {
     const elements = document.querySelectorAll("[data-reveal]");
@@ -41,6 +46,18 @@ export default function HomePage() {
     return () => window.removeEventListener("resize", closeMenu);
   }, []);
 
+  useEffect(() => {
+    const storedLanguage = window.localStorage.getItem("moon-river-language");
+    if (storedLanguage && translations[storedLanguage]) {
+      setLanguage(storedLanguage);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = language;
+    window.localStorage.setItem("moon-river-language", language);
+  }, [language]);
+
   const handleContactSubmit = (event) => {
     event.preventDefault();
     setSubmitState("sending");
@@ -57,10 +74,10 @@ export default function HomePage() {
 
   const submitLabel =
     submitState === "sending"
-      ? "Odesila se..."
+      ? t.formSending
       : submitState === "done"
-        ? "Zprava uspesne odeslana"
-        : "Odeslat zpravu";
+        ? t.formSuccess
+        : t.formSubmit;
 
   return (
     <>
@@ -68,25 +85,31 @@ export default function HomePage() {
 
       <SiteHeader
         navOpen={navOpen}
+        language={language}
+        t={t}
+        onLanguageChange={setLanguage}
         onToggle={() => setNavOpen((current) => !current)}
         onNavigate={() => setNavOpen(false)}
       />
 
       <main>
-        <HeroSection />
-        <InfoSection />
-        <GallerySection />
-        <BenefitsSection />
+        <HeroSection t={t} />
+        <InfoSection t={t} />
+        <PricingSection t={t} />
+        <GallerySection t={t} />
+        <BenefitsSection t={t} />
         <ContactSection
+          t={t}
           submitLabel={submitLabel}
           submitState={submitState}
           onSubmit={handleContactSubmit}
         />
       </main>
 
-      <SiteFooter />
+      <SiteFooter t={t} />
       <ChatWidget
         chatOpen={chatOpen}
+        t={t}
         onToggle={() => setChatOpen((current) => !current)}
         onClose={() => setChatOpen(false)}
       />

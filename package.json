@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "update-rate": "node scripts/update-eur-rate.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

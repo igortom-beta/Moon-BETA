@@ -1,4 +1,4 @@
-export function HeroSection() {
+export function HeroSection({ t }) {
   const hostedVideoSrc =
     "https://github.com/igortom-beta/Moon-BETA/releases/download/moon-aura-media/proforma-start.mp4";
   const basePath = process.env.NODE_ENV === "production" ? "/Moon-BETA" : "";
@@ -13,14 +13,11 @@ export function HeroSection() {
         <div className="reveal-block" data-reveal>
           <p className="eyebrow">
             <span />
-            <span>Autenticka pamat krajiny</span>
+            <span>{t.heroSubtitle}</span>
             <span />
           </p>
           <h1>Moon River</h1>
-          <p className="hero-copy-text">
-            Exkluzivni dlouhodoby pronajem. Vas ostrov v prirode s garantovanou
-            opci 5+5 let. Spojeni absolutniho soukromi a premioveho servisu.
-          </p>
+          <p className="hero-copy-text">{t.heroDescription}</p>
         </div>
 
         <div id="video-sekce" className="hero-video reveal-block" data-reveal>
@@ -39,7 +36,7 @@ export function HeroSection() {
         </div>
 
         <div className="hero-actions reveal-block" data-reveal>
-          <a href="#kontakt" className="button">Poptat pronajem</a>
+          <a href="#kontakt" className="button">{t.heroButton}</a>
         </div>
       </div>
     </section>

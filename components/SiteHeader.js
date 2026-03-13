@@ -1,4 +1,6 @@
-export function SiteHeader({ navOpen, onToggle, onNavigate }) {
+import { languages } from "./translations";
+
+export function SiteHeader({ navOpen, language, t, onLanguageChange, onToggle, onNavigate }) {
   return (
     <header className="site-header">
       <div className="shell nav-shell">
@@ -6,7 +8,7 @@ export function SiteHeader({ navOpen, onToggle, onNavigate }) {
           <span className="brand-mark">MR</span>
           <span className="brand-copy">
             <strong>Moon River</strong>
-            <span>Signature Resort</span>
+            <span>{t.brandTag}</span>
           </span>
         </a>
 
@@ -24,14 +26,30 @@ export function SiteHeader({ navOpen, onToggle, onNavigate }) {
         </button>
 
         <nav id="site-nav" className={`site-nav${navOpen ? " is-open" : ""}`}>
-          <a href="#projekt" onClick={onNavigate}>Uvod</a>
-          <a href="#video-sekce" onClick={onNavigate}>Video</a>
-          <a href="#informace" onClick={onNavigate}>Informace</a>
-          <a href="#galerie" onClick={onNavigate}>Galerie</a>
-          <a href="#kontakt" onClick={onNavigate}>Kontakt</a>
+          <a href="#projekt" onClick={onNavigate}>{t.navIntro}</a>
+          <a href="#video-sekce" onClick={onNavigate}>{t.navVideo}</a>
+          <a href="#informace" onClick={onNavigate}>{t.navInfo}</a>
+          <a href="#ceny" onClick={onNavigate}>{t.navPricing}</a>
+          <a href="#galerie" onClick={onNavigate}>{t.navGallery}</a>
+          <a href="#kontakt" onClick={onNavigate}>{t.navContact}</a>
         </nav>
 
-        <a href="#kontakt" className="nav-cta">Kontakt</a>
+        <div className="nav-side">
+          <div className="lang-switcher" aria-label="Language switcher">
+            {languages.map((lang) => (
+              <button
+                key={lang}
+                type="button"
+                className={`lang-button${language === lang ? " is-active" : ""}`}
+                onClick={() => onLanguageChange(lang)}
+              >
+                {lang.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <a href="#kontakt" className="nav-cta">{t.navContact}</a>
+        </div>
       </div>
     </header>
   );
